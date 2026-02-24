@@ -16,6 +16,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import AboutMe from "./AboutMe";
 import Projects from "./Project";
+import WorkExperience from "./workexperience";
 
 export default function Navbar() {
   const [openPopup, setOpenPopup] = useState<string | null>(null);
@@ -29,8 +30,8 @@ export default function Navbar() {
         return <AboutMe />;
       case "Projects":
         return <Projects />;
-      case "Blog":
-        return <Typography sx={{ p: 2 }}>Blog content goes here...</Typography>;
+      case "Work Experience":
+        return <WorkExperience />;
       case "Contact":
         return (
           <Box sx={{ p: 2 }}>
@@ -62,8 +63,8 @@ export default function Navbar() {
         position="sticky"
         elevation={0}
         sx={{
-          background: "rgba(255,255,255,0.8)",
-          backdropFilter: "blur(12px)",
+          backgroundColor: "#ffffff",
+          color: "#111827",
           borderBottom: "1px solid rgba(0,0,0,0.06)",
           px: { xs: 2, md: 6 },
         }}
@@ -77,7 +78,7 @@ export default function Navbar() {
               fontSize: "1.05rem",
             }}
           >
-            Sona Bhatta
+            
           </Typography>
 
           {/* CENTER – NAV LINKS */}
@@ -85,7 +86,10 @@ export default function Navbar() {
             <NavItem label="Home" onClick={handleClose} />
             <NavItem label="About" onClick={() => handleOpen("About")} />
             <NavItem label="Projects" onClick={() => handleOpen("Projects")} />
-            <NavItem label="Blog" onClick={() => handleOpen("Blog")} />
+            <NavItem
+              label="Work Experience"
+              onClick={() => handleOpen("Work Experience")}
+            />
             <NavItem label="Contact" onClick={() => handleOpen("Contact")} />
           </Box>
 
@@ -98,15 +102,10 @@ export default function Navbar() {
               fontWeight: 600,
               textTransform: "none",
               color: "#fff",
-              background:
-                "linear-gradient(90deg, #7c3aed, #a855f7)",
+              background: "linear-gradient(90deg, #7c3aed, #a855f7)",
               boxShadow: "0 12px 35px rgba(124,58,237,0.35)",
-              transition: "all 0.3s ease",
               "&:hover": {
-                transform: "translateY(-1px)",
-                boxShadow: "0 18px 45px rgba(124,58,237,0.45)",
-                background:
-                  "linear-gradient(90deg, #6d28d9, #9333ea)",
+                background: "linear-gradient(90deg, #6d28d9, #9333ea)",
               },
             }}
           >
@@ -116,21 +115,63 @@ export default function Navbar() {
       </AppBar>
 
       {/* ================= MODAL ================= */}
-      <Dialog open={!!openPopup} onClose={handleClose} maxWidth="md" fullWidth>
+      <Dialog
+        open={!!openPopup}
+        onClose={handleClose}
+        maxWidth="md"
+        fullWidth
+        scroll="paper"
+        PaperProps={{
+          sx: {
+            borderRadius: 4,
+            overflow: "hidden",
+            background: "rgba(10,12,24,0.94)", // ✅ dark readable
+            border: "1px solid rgba(255,255,255,0.10)",
+            backdropFilter: "blur(18px)",
+            boxShadow: "0 30px 90px rgba(0,0,0,0.65)",
+          },
+        }}
+        BackdropProps={{
+          sx: {
+            backgroundColor: "rgba(0,0,0,0.65)", // ✅ darker backdrop
+          },
+        }}
+      >
         <DialogTitle
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            fontWeight: 600,
+            fontWeight: 800,
+            py: 2,
+            px: 3,
+            color: "rgba(231,234,243,0.95)",
+            borderBottom: "1px solid rgba(255,255,255,0.10)",
           }}
         >
           {openPopup}
-          <IconButton onClick={handleClose}>
+          <IconButton
+            onClick={handleClose}
+            sx={{
+              color: "rgba(231,234,243,0.9)",
+              "&:hover": { backgroundColor: "rgba(255,255,255,0.10)" },
+            }}
+          >
             <CloseIcon />
           </IconButton>
         </DialogTitle>
-        <DialogContent dividers>{renderPopupContent()}</DialogContent>
+
+        <DialogContent
+          dividers
+          sx={{
+            px: 3,
+            py: 2.5,
+            color: "rgba(231,234,243,0.85)",
+            borderColor: "rgba(255,255,255,0.10)",
+          }}
+        >
+          {renderPopupContent()}
+        </DialogContent>
       </Dialog>
     </>
   );
@@ -161,8 +202,7 @@ function NavItem({
           height: "2px",
           bottom: -4,
           left: 0,
-          background:
-            "linear-gradient(90deg, #7c3aed, #a855f7)",
+          background: "linear-gradient(90deg, #7c3aed, #a855f7)",
           transition: "width 0.3s ease",
         },
         "&:hover": {

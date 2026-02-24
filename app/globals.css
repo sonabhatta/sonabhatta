@@ -1,55 +1,70 @@
 
-
-/* Custom variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #070816;
+  --foreground: #e7eaf3;
+  --muted: rgba(231, 234, 243, 0.72);
+
+  --card: rgba(255, 255, 255, 0.06);
+  --cardBorder: rgba(255, 255, 255, 0.1);
+
+  --accent1: #7c3aed;
+  --accent2: #a855f7;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
+  margin: 0;
   color: var(--foreground);
+  background: radial-gradient(
+      900px 520px at 18% 20%,
+      rgba(124, 58, 237, 0.35),
+      transparent 60%
+    ),
+    radial-gradient(
+      760px 460px at 82% 68%,
+      rgba(168, 85, 247, 0.22),
+      transparent 55%
+    ),
+    linear-gradient(180deg, #050615 0%, #070816 35%, #070816 100%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* Optional: better default link style for dark bg */
+a {
+  color: rgba(231, 234, 243, 0.9);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Animations (cleaned up)
+   ========================= */
 
 /* Wiggle animation */
 @keyframes wiggle {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(14px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(14px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .wiggle {
   animation: wiggle 3.2s ease-in-out infinite;
 }
-@keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
 
-.float {
-  animation: float 4s ease-in-out infinite;
-}
-@keyframes messageIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.message-animate {
-  animation: messageIn 0.25s ease-out forwards;
-}
+/* Floating animation */
 @keyframes float {
   0% {
     transform: translateY(0);
@@ -62,23 +77,12 @@ body {
   }
 }
 
+.float,
 .animate-float {
   animation: float 4s ease-in-out infinite;
 }
 
-.hero-glow {
-  position: absolute;
-  width: 360px;
-  height: 460px;
-  border-radius: 45%;
-  background: rgba(168, 85, 247, 0.35); /* purple-500 */
-  filter: blur(80px);
-  z-index: 0;
-}
-.message-animate {
-  animation: fadeUp 0.3s ease-out both;
-}
-
+/* Message fade-up animation */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -88,4 +92,19 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.message-animate {
+  animation: fadeUp 0.3s ease-out both;
+}
+
+/* Glow blob helper */
+.hero-glow {
+  position: absolute;
+  width: 360px;
+  height: 460px;
+  border-radius: 45%;
+  background: rgba(168, 85, 247, 0.35);
+  filter: blur(80px);
+  z-index: 0;
 }
