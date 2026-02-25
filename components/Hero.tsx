@@ -9,7 +9,7 @@ import {
   CardContent,
   Avatar,
   Chip,
- Divider,
+  Divider,
   Stack,
   Button,
   IconButton,
@@ -104,7 +104,10 @@ export default function Hero() {
                     boxShadow: "0 0 18px rgba(168,85,247,0.6)",
                   }}
                 />
-                <Typography variant="caption" sx={{ color: "rgba(231,234,243,0.8)" }}>
+                <Typography
+                  variant="caption"
+                  sx={{ color: "rgba(231,234,243,0.8)" }}
+                >
                   Information Technology Major
                 </Typography>
               </Box>
@@ -130,10 +133,18 @@ export default function Hero() {
 
               <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
                 <Chip icon={<RouterIcon />} label="Networking" variant="outlined" />
-                <Chip icon={<DnsIcon />} label="System Administration" variant="outlined" />
+                <Chip
+                  icon={<DnsIcon />}
+                  label="System Administration"
+                  variant="outlined"
+                />
                 <Chip icon={<StorageIcon />} label="Databases" variant="outlined" />
                 <Chip icon={<SecurityIcon />} label="Security Basics" variant="outlined" />
-                <Chip icon={<LanguageIcon />} label="Web Applications" variant="outlined" />
+                <Chip
+                  icon={<LanguageIcon />}
+                  label="Web Applications"
+                  variant="outlined"
+                />
                 <Chip icon={<TerminalIcon />} label="Linux & CLI" variant="outlined" />
               </Stack>
 
@@ -170,12 +181,17 @@ export default function Hero() {
               </Stack>
             </Box>
 
-            {/* RIGHT IMAGE (UNCHANGED) */}
-            <Box sx={{ display: "flex", justifyContent: { xs: "center", md: "flex-end" } }}>
+            {/* RIGHT IMAGE (MOBILE FRIENDLY) */}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: { xs: "center", md: "flex-end" },
+              }}
+            >
               <Box
                 sx={{
-                  width: { xs: 720, md: 380 },
-                  height: { xs: 820, md: 380 },
+                  width: { xs: 240, sm: 300, md: 380 },
+                  height: { xs: 240, sm: 300, md: 380 },
                   borderRadius: "50%",
                   border: "5px solid rgba(255, 255, 255, 0.9)",
                   boxShadow: "0 20px 70px rgba(0,0,0,0.55)",
@@ -211,9 +227,17 @@ export default function Hero() {
         <ChatIcon />
       </Fab>
 
-      {/* CHAT WINDOW */}
+      {/* CHAT WINDOW (MOBILE FRIENDLY) */}
       {chatOpen && (
-        <Card sx={{ position: "fixed", bottom: 80, right: 30, width: 360 }}>
+        <Card
+          sx={{
+            position: "fixed",
+            bottom: 80,
+            right: { xs: 12, sm: 30 },
+            width: { xs: "calc(100vw - 24px)", sm: 360 },
+            maxWidth: 360,
+          }}
+        >
           <CardContent>
             <ChatWidget onClose={() => setChatOpen(false)} />
           </CardContent>
