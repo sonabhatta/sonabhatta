@@ -14,10 +14,7 @@ type Message = {
 
 export default function ChatWidget({ onClose }: { onClose?: () => void }) {
   const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content: "Hi! I’m Sona's AI assistant. How can I help you today?",
-    },
+    { role: "assistant", content: "Hi! I’m Sona's AI assistant. How can I help you today?" },
   ]);
   const [input, setInput] = useState("");
 
@@ -38,35 +35,29 @@ export default function ChatWidget({ onClose }: { onClose?: () => void }) {
     const msg = text.toLowerCase();
 
     if (msg.includes("who")) {
-      return `Sona is an Information Technology student at Southeastern Louisiana University. She’s passionate about networking, systems, and building reliable web applications with modern tools.`;
+      return `Sona is an Information Technology student at Southeastern Louisiana University. She’s passionate about networking, systems, and building reliable web applications.`;
     }
-
     if (msg.includes("education")) {
       return `Sona is pursuing a Bachelor’s degree in Information Technology at Southeastern Louisiana University and is expected to graduate in May 2027.`;
     }
-
     if (msg.includes("internship")) {
       return `Sona has accepted a Summer 2026 internship as a Network Services Engineer Intern at Cleco (Pineville, Louisiana), gaining hands-on experience supporting enterprise network infrastructure.`;
     }
-
     if (msg.includes("work")) {
       return `Sona’s work experience includes:
-• STEM Student Assistant (Southeastern Northshore STEM Center) — supporting Arduino, NVIDIA Jetson robotics, and VR/AR simulators
-• Network Support Student Assistant (SLU IT Solutions) — troubleshooting Wi-Fi/Ethernet infrastructure and AP outages
-• Computer Science Tutor (SLU) — tutoring programming fundamentals, data structures, and algorithms
-• Student Assistant / Front Desk (Math Department) — front-desk operations and student support`;
+• STEM Student Assistant — supporting Arduino, NVIDIA Jetson robotics, and VR/AR simulators
+• Network Support Student Assistant — troubleshooting Wi-Fi/Ethernet and AP outages
+• Computer Science Tutor — tutoring programming fundamentals
+• Student Assistant / Front Desk — front-desk operations and student support`;
     }
-
     if (msg.includes("skills")) {
-      return `Sona’s skills include networking fundamentals, Wi-Fi troubleshooting, IT infrastructure support, software development, React/TypeScript, .NET, SQL, and technical tutoring.`;
+      return `Sona’s skills include networking fundamentals, Wi-Fi troubleshooting, IT infrastructure support, React/TypeScript, .NET, SQL, and technical tutoring.`;
     }
-
     if (msg.includes("projects")) {
-      return `Sona has worked on projects including an Event Management Platform, Lions Den Cinema (a full-stack theater management system), and an AI-powered Interview Analyzer using speech-to-text and emotion detection.`;
+      return `Sona has worked on projects including an Event Management Platform, Lions Den Cinema (full-stack theater system), and an AI-powered Interview Analyzer.`;
     }
-
     if (msg.includes("leadership")) {
-    return `Sona served as Director of Communications for the International Student Union, leading outreach initiatives, managing social media, and developing promotional content to increase student engagement. She is currently working in Public Relations and Marketing for WIT at Southeastern Louisiana University.`;
+      return `Sona served as Director of Communications for the International Student Union, leading outreach and social media to increase student engagement. She is currently working in Public Relations and Marketing for WIT at Southeastern Louisiana University.`;
     }
 
     return `You can ask about Sona’s education, internship, work experience, skills, projects, or leadership experience.`;
@@ -81,7 +72,6 @@ export default function ChatWidget({ onClose }: { onClose?: () => void }) {
       { role: "user", content: messageText },
       { role: "assistant", content: getResponse(messageText) },
     ]);
-
     setInput("");
   };
 
@@ -90,40 +80,41 @@ export default function ChatWidget({ onClose }: { onClose?: () => void }) {
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: 380,
+        height: "100%",
         px: 2,
         pb: 2,
-        position: "relative", // ✅ for close button positioning
       }}
     >
-      {/* ✅ Close (X) Button */}
-      <IconButton
-        onClick={onClose}
-        aria-label="Close chat"
-        sx={{
-          position: "absolute",
-          top: 8,
-          right: 8,
-          color: "rgba(231,234,243,0.9)",
-          backgroundColor: "rgba(255,255,255,0.06)",
-          border: "1px solid rgba(255,255,255,0.12)",
-          backdropFilter: "blur(12px)",
-          "&:hover": { backgroundColor: "rgba(255,255,255,0.12)" },
-        }}
-      >
-        <CloseIcon fontSize="small" />
-      </IconButton>
-
-      {/* Quick prompts */}
+      {/* Header */}
       <Box
         sx={{
-          mt: 1.5,
-          mb: 1.5,
+          pt: 1.25,
+          pb: 1,
           display: "flex",
-          gap: 1,
-          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
+        <Typography sx={{ color: "rgba(231,234,243,0.92)", fontWeight: 700, fontSize: 14 }}>
+          Sona&apos;s AI Assistant
+        </Typography>
+
+        <IconButton
+          onClick={onClose}
+          aria-label="Close chat"
+          sx={{
+            color: "rgba(231,234,243,0.9)",
+            backgroundColor: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(255,255,255,0.12)",
+            "&:hover": { backgroundColor: "rgba(255,255,255,0.12)" },
+          }}
+        >
+          <CloseIcon fontSize="small" />
+        </IconButton>
+      </Box>
+
+      {/* Quick prompts */}
+      <Box sx={{ mb: 1.25, display: "flex", gap: 1, flexWrap: "wrap" }}>
         {quickPrompts.map((prompt) => {
           const isPrimary = prompt.label === "Who";
           return (
@@ -134,7 +125,7 @@ export default function ChatWidget({ onClose }: { onClose?: () => void }) {
               sx={{
                 textTransform: "none",
                 borderRadius: 999,
-                px: 1.8,
+                px: 1.6,
                 py: 0.55,
                 fontSize: 12.5,
                 fontWeight: 600,
@@ -143,10 +134,7 @@ export default function ChatWidget({ onClose }: { onClose?: () => void }) {
                   ? "linear-gradient(90deg, #7c3aed, #a855f7)"
                   : "rgba(255,255,255,0.08)",
                 color: isPrimary ? "#fff" : "rgba(231,234,243,0.9)",
-                border: isPrimary
-                  ? "1px solid rgba(255,255,255,0.10)"
-                  : "1px solid rgba(255,255,255,0.12)",
-                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(255,255,255,0.12)",
                 "&:hover": {
                   background: isPrimary
                     ? "linear-gradient(90deg, #6d28d9, #9333ea)"
@@ -176,7 +164,6 @@ export default function ChatWidget({ onClose }: { onClose?: () => void }) {
           return (
             <Box
               key={index}
-              className="message-animate"
               sx={{
                 display: "flex",
                 alignItems: "flex-end",
@@ -188,9 +175,7 @@ export default function ChatWidget({ onClose }: { onClose?: () => void }) {
                 sx={{
                   width: 30,
                   height: 30,
-                  bgcolor: isUser
-                    ? "rgba(124,58,237,0.85)"
-                    : "rgba(255,255,255,0.10)",
+                  bgcolor: isUser ? "rgba(124,58,237,0.85)" : "rgba(255,255,255,0.10)",
                   border: "1px solid rgba(255,255,255,0.10)",
                   color: "#fff",
                 }}
@@ -207,10 +192,7 @@ export default function ChatWidget({ onClose }: { onClose?: () => void }) {
                   background: isUser
                     ? "linear-gradient(90deg, rgba(124,58,237,0.95), rgba(168,85,247,0.95))"
                     : "rgba(255,255,255,0.08)",
-                  border: isUser
-                    ? "1px solid rgba(255,255,255,0.08)"
-                    : "1px solid rgba(255,255,255,0.10)",
-                  backdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255,255,255,0.10)",
                   color: isUser ? "#fff" : "rgba(231,234,243,0.92)",
                   whiteSpace: "pre-line",
                 }}
@@ -227,7 +209,7 @@ export default function ChatWidget({ onClose }: { onClose?: () => void }) {
       {/* Input */}
       <Box
         sx={{
-          mt: 1.5,
+          mt: 1.25,
           display: "flex",
           alignItems: "center",
           gap: 1,
@@ -248,14 +230,8 @@ export default function ChatWidget({ onClose }: { onClose?: () => void }) {
           InputProps={{ disableUnderline: true }}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
           sx={{
-            "& input": {
-              color: "rgba(231,234,243,0.92)",
-              fontSize: 13.5,
-            },
-            "& input::placeholder": {
-              color: "rgba(231,234,243,0.55)",
-              opacity: 1,
-            },
+            "& input": { color: "rgba(231,234,243,0.92)", fontSize: 13.5 },
+            "& input::placeholder": { color: "rgba(231,234,243,0.55)", opacity: 1 },
           }}
         />
         <IconButton
@@ -266,9 +242,7 @@ export default function ChatWidget({ onClose }: { onClose?: () => void }) {
             color: "#fff",
             background: "linear-gradient(90deg, #7c3aed, #a855f7)",
             boxShadow: "0 10px 24px rgba(124,58,237,0.35)",
-            "&:hover": {
-              background: "linear-gradient(90deg, #6d28d9, #9333ea)",
-            },
+            "&:hover": { background: "linear-gradient(90deg, #6d28d9, #9333ea)" },
           }}
         >
           <SendIcon fontSize="small" />
