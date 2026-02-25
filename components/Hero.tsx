@@ -9,7 +9,7 @@ import {
   CardContent,
   Avatar,
   Chip,
-  Divider,
+ Divider,
   Stack,
   Button,
   IconButton,
@@ -72,7 +72,6 @@ export default function Hero() {
             zIndex: 1,
           }}
         >
-          {/* Layout: left text + right profile */}
           <Box
             sx={{
               display: "grid",
@@ -81,7 +80,7 @@ export default function Hero() {
               alignItems: "center",
             }}
           >
-            {/* LEFT: Text (UNCHANGED) */}
+            {/* LEFT */}
             <Box>
               <Box
                 sx={{
@@ -105,10 +104,7 @@ export default function Hero() {
                     boxShadow: "0 0 18px rgba(168,85,247,0.6)",
                   }}
                 />
-                <Typography
-                  variant="caption"
-                  sx={{ color: "rgba(231,234,243,0.8)" }}
-                >
+                <Typography variant="caption" sx={{ color: "rgba(231,234,243,0.8)" }}>
                   Information Technology Major
                 </Typography>
               </Box>
@@ -126,13 +122,7 @@ export default function Hero() {
                 Sona Bhatta
               </Typography>
 
-              <Typography
-                sx={{
-                  mt: 1.5,
-                  color: "rgba(231,234,243,0.72)",
-                  fontSize: { xs: "1rem", md: "1.05rem" },
-                }}
-              >
+              <Typography sx={{ mt: 1.5, color: "rgba(231,234,243,0.72)" }}>
                 Networking • Systems • Databases • Web Development
               </Typography>
 
@@ -140,22 +130,10 @@ export default function Hero() {
 
               <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
                 <Chip icon={<RouterIcon />} label="Networking" variant="outlined" />
-                <Chip
-                  icon={<DnsIcon />}
-                  label="System Administration"
-                  variant="outlined"
-                />
+                <Chip icon={<DnsIcon />} label="System Administration" variant="outlined" />
                 <Chip icon={<StorageIcon />} label="Databases" variant="outlined" />
-                <Chip
-                  icon={<SecurityIcon />}
-                  label="Security Basics"
-                  variant="outlined"
-                />
-                <Chip
-                  icon={<LanguageIcon />}
-                  label="Web Applications"
-                  variant="outlined"
-                />
+                <Chip icon={<SecurityIcon />} label="Security Basics" variant="outlined" />
+                <Chip icon={<LanguageIcon />} label="Web Applications" variant="outlined" />
                 <Chip icon={<TerminalIcon />} label="Linux & CLI" variant="outlined" />
               </Stack>
 
@@ -167,26 +145,16 @@ export default function Hero() {
                   borderRadius: 3,
                   backgroundColor: "rgba(255,255,255,0.06)",
                   border: "1px solid rgba(255,255,255,0.10)",
-                  backdropFilter: "blur(16px)",
-                  maxWidth: 620,
                 }}
               >
-                <Typography
-                  variant="body2"
-                  sx={{ color: "rgba(231,234,243,0.82)" }}
-                >
+                <Typography variant="body2">
                   Focused on building reliable systems, learning enterprise IT
                   technologies, and developing strong networking expertise.
                 </Typography>
               </Box>
 
-              <Stack
-                direction="row"
-                spacing={1.5}
-                sx={{ mt: 3 }}
-                flexWrap="wrap"
-                useFlexGap
-              >
+              {/* ONLY BUTTON LEFT */}
+              <Stack direction="row" spacing={1.5} sx={{ mt: 3 }}>
                 <Button
                   variant="contained"
                   sx={{
@@ -194,69 +162,38 @@ export default function Hero() {
                     py: 1,
                     borderRadius: 999,
                     background: "linear-gradient(90deg, #7c3aed, #a855f7)",
-                    boxShadow: "0 14px 40px rgba(124,58,237,0.35)",
-                    "&:hover": {
-                      background: "linear-gradient(90deg, #6d28d9, #9333ea)",
-                      boxShadow: "0 18px 55px rgba(124,58,237,0.45)",
-                    },
                   }}
                   onClick={() => setChatOpen(true)}
                 >
                   Ask My AI Assistant
                 </Button>
-
-                <Button
-                  variant="outlined"
-                  sx={{
-                    px: 2.6,
-                    py: 1,
-                    borderRadius: 999,
-                    color: "rgba(231,234,243,0.9)",
-                    borderColor: "rgba(255,255,255,0.18)",
-                    backgroundColor: "rgba(255,255,255,0.04)",
-                    "&:hover": {
-                      borderColor: "rgba(255,255,255,0.28)",
-                      backgroundColor: "rgba(255,255,255,0.08)",
-                    },
-                  }}
-                >
-                  View Projects
-                </Button>
               </Stack>
             </Box>
 
-            
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: { xs: "center", md: "flex-end" },
-              }}
-            >
+            {/* RIGHT IMAGE (UNCHANGED) */}
+            <Box sx={{ display: "flex", justifyContent: { xs: "center", md: "flex-end" } }}>
               <Box
                 sx={{
-                  width: { xs: 720, md: 380 }, //profilepicture
+                  width: { xs: 720, md: 380 },
                   height: { xs: 820, md: 380 },
                   borderRadius: "50%",
                   border: "5px solid rgba(255, 255, 255, 0.9)",
                   boxShadow: "0 20px 70px rgba(0,0,0,0.55)",
                   overflow: "hidden",
-                  backgroundColor: "rgba(255,255,255,0.08)",
-                  position: "relative",      
-    
+                  position: "relative",
                 }}
               >
                 <Box
                   component="img"
-    src="/profile.jpeg"
-    alt="Profile"
-    sx={{
-      position: "absolute", 
-      inset: 0,
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      objectPosition: "1% 50%", 
-      display: "block",
+                  src="/profile.jpeg"
+                  alt="Profile"
+                  sx={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "1% 50%",
                   }}
                 />
               </Box>
@@ -265,77 +202,20 @@ export default function Hero() {
         </Box>
       </Box>
 
-      {/* ================= CHAT FAB ================= */}
+      {/* CHAT FAB */}
       <Fab
         color="primary"
         onClick={() => setChatOpen((prev) => !prev)}
-        sx={{
-          position: "fixed",
-          bottom: 30,
-          right: 30,
-          zIndex: 999,
-          boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
-        }}
+        sx={{ position: "fixed", bottom: 30, right: 30 }}
       >
         <ChatIcon />
       </Fab>
 
-      {/* ================= CHAT WINDOW ================= */}
+      {/* CHAT WINDOW */}
       {chatOpen && (
-        <Card
-          sx={{
-            position: "fixed",
-            bottom: 80,
-            right: 30,
-            width: 360,
-            maxHeight: 520,
-            borderRadius: 4,
-            boxShadow: "0 22px 70px rgba(0,0,0,0.55)",
-            zIndex: 1000,
-            display: "flex",
-            flexDirection: "column",
-            backgroundColor: "rgba(10,12,24,0.92)",
-            border: "1px solid rgba(255,255,255,0.10)",
-            backdropFilter: "blur(16px)",
-            overflow: "hidden",
-          }}
-        >
-          <Box
-            sx={{
-              background: "linear-gradient(90deg, #7c3aed, #a855f7)",
-              color: "white",
-              px: 2,
-              py: 1.5,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-              <Avatar sx={{ bgcolor: "rgba(255,255,255,0.9)", color: "#7c3aed" }}>
-                <AutoAwesomeIcon />
-              </Avatar>
-              <Box>
-                <Typography fontWeight={700}>Ask Sona&apos;s AI Assistant</Typography>
-                <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                  IT help • Networking • Projects
-                </Typography>
-              </Box>
-            </Box>
-
-            <IconButton
-              onClick={() => setChatOpen(false)}
-              sx={{
-                color: "white",
-                "&:hover": { backgroundColor: "rgba(255,255,255,0.15)" },
-              }}
-            >
-              <CloseIcon fontSize="small" />
-            </IconButton>
-          </Box>
-
-          <CardContent sx={{ p: 0, flex: 1, overflow: "hidden" }}>
-            <ChatWidget />
+        <Card sx={{ position: "fixed", bottom: 80, right: 30, width: 360 }}>
+          <CardContent>
+            <ChatWidget onClose={() => setChatOpen(false)} />
           </CardContent>
         </Card>
       )}

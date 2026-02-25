@@ -5,13 +5,14 @@ import { Box, Avatar, TextField, IconButton, Button, Typography } from "@mui/mat
 import SendIcon from "@mui/icons-material/Send";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import PersonIcon from "@mui/icons-material/Person";
+import CloseIcon from "@mui/icons-material/Close";
 
 type Message = {
   role: "assistant" | "user";
   content: string;
 };
 
-export default function ChatWidget() {
+export default function ChatWidget({ onClose }: { onClose?: () => void }) {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
@@ -65,7 +66,7 @@ export default function ChatWidget() {
     }
 
     if (msg.includes("leadership")) {
-      return `Sona served as Director of Communications for the International Student Union, supporting outreach, social media, and promotional content to increase student engagement.`;
+    return `Sona served as Director of Communications for the International Student Union, leading outreach initiatives, managing social media, and developing promotional content to increase student engagement. She is currently working in Public Relations and Marketing for WIT at Southeastern Louisiana University.`;
     }
 
     return `You can ask about Sona’s education, internship, work experience, skills, projects, or leadership experience.`;
@@ -92,8 +93,27 @@ export default function ChatWidget() {
         height: 380,
         px: 2,
         pb: 2,
+        position: "relative", // ✅ for close button positioning
       }}
     >
+      {/* ✅ Close (X) Button */}
+      <IconButton
+        onClick={onClose}
+        aria-label="Close chat"
+        sx={{
+          position: "absolute",
+          top: 8,
+          right: 8,
+          color: "rgba(231,234,243,0.9)",
+          backgroundColor: "rgba(255,255,255,0.06)",
+          border: "1px solid rgba(255,255,255,0.12)",
+          backdropFilter: "blur(12px)",
+          "&:hover": { backgroundColor: "rgba(255,255,255,0.12)" },
+        }}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+
       {/* Quick prompts */}
       <Box
         sx={{
@@ -123,7 +143,9 @@ export default function ChatWidget() {
                   ? "linear-gradient(90deg, #7c3aed, #a855f7)"
                   : "rgba(255,255,255,0.08)",
                 color: isPrimary ? "#fff" : "rgba(231,234,243,0.9)",
-                border: isPrimary ? "1px solid rgba(255,255,255,0.10)" : "1px solid rgba(255,255,255,0.12)",
+                border: isPrimary
+                  ? "1px solid rgba(255,255,255,0.10)"
+                  : "1px solid rgba(255,255,255,0.12)",
                 backdropFilter: "blur(12px)",
                 "&:hover": {
                   background: isPrimary
@@ -166,16 +188,14 @@ export default function ChatWidget() {
                 sx={{
                   width: 30,
                   height: 30,
-                  bgcolor: isUser ? "rgba(124,58,237,0.85)" : "rgba(255,255,255,0.10)",
+                  bgcolor: isUser
+                    ? "rgba(124,58,237,0.85)"
+                    : "rgba(255,255,255,0.10)",
                   border: "1px solid rgba(255,255,255,0.10)",
                   color: "#fff",
                 }}
               >
-                {isUser ? (
-                  <PersonIcon fontSize="small" />
-                ) : (
-                  <SmartToyIcon fontSize="small" />
-                )}
+                {isUser ? <PersonIcon fontSize="small" /> : <SmartToyIcon fontSize="small" />}
               </Avatar>
 
               <Box
@@ -187,7 +207,9 @@ export default function ChatWidget() {
                   background: isUser
                     ? "linear-gradient(90deg, rgba(124,58,237,0.95), rgba(168,85,247,0.95))"
                     : "rgba(255,255,255,0.08)",
-                  border: isUser ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(255,255,255,0.10)",
+                  border: isUser
+                    ? "1px solid rgba(255,255,255,0.08)"
+                    : "1px solid rgba(255,255,255,0.10)",
                   backdropFilter: "blur(12px)",
                   color: isUser ? "#fff" : "rgba(231,234,243,0.92)",
                   whiteSpace: "pre-line",
