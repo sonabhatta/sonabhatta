@@ -84,6 +84,7 @@ export default function Navbar() {
           color: "#111827",
           borderBottom: "1px solid rgba(0,0,0,0.06)",
           px: { xs: 1.5, md: 6 },
+          zIndex: 2500,
         }}
       >
         <Toolbar
@@ -94,7 +95,19 @@ export default function Navbar() {
             minHeight: 64,
           }}
         >
-          {/* LEFT (optional name) */}
+          {/* MOBILE + DESKTOP: show a title so navbar is visible */}
+          <Typography
+            fontWeight={800}
+            sx={{
+              letterSpacing: "-0.5px",
+              fontSize: "1.05rem",
+              display: { xs: "block", md: "none" }, // ✅ show on mobile
+            }}
+          >
+            Sona
+          </Typography>
+
+          {/* DESKTOP LEFT (optional name) */}
           <Typography
             fontWeight={800}
             sx={{
@@ -102,7 +115,7 @@ export default function Navbar() {
               fontSize: "1.05rem",
               position: { md: "absolute" },
               left: { md: 0 },
-              display: { xs: "none", md: "block" },
+              display: { xs: "none", md: "block" }, // ✅ only desktop
             }}
           >
             {/* Optional: Sona */}
@@ -111,7 +124,11 @@ export default function Navbar() {
           {/* MOBILE: Hamburger */}
           <IconButton
             onClick={() => setMobileOpen(true)}
-            sx={{ display: { xs: "inline-flex", md: "none" } }}
+            sx={{
+              display: { xs: "inline-flex", md: "none" },
+              color: "#111827",
+            }}
+            aria-label="Open menu"
           >
             <MenuIcon />
           </IconButton>
@@ -133,9 +150,6 @@ export default function Navbar() {
             />
             <NavItem label="Contact" onClick={() => handleOpen("Contact")} />
           </Box>
-
-          {/* MOBILE: right spacer so hamburger doesn't look odd */}
-          <Box sx={{ width: 40, display: { xs: "block", md: "none" } }} />
         </Toolbar>
       </AppBar>
 
@@ -154,9 +168,20 @@ export default function Navbar() {
           },
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", p: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            p: 2,
+          }}
+        >
           <Typography fontWeight={800}>Menu</Typography>
-          <IconButton onClick={() => setMobileOpen(false)} sx={{ color: "rgba(231,234,243,0.9)" }}>
+          <IconButton
+            onClick={() => setMobileOpen(false)}
+            sx={{ color: "rgba(231,234,243,0.9)" }}
+            aria-label="Close menu"
+          >
             <CloseIcon />
           </IconButton>
         </Box>
@@ -219,6 +244,7 @@ export default function Navbar() {
               color: "rgba(231,234,243,0.9)",
               "&:hover": { backgroundColor: "rgba(255,255,255,0.10)" },
             }}
+            aria-label="Close dialog"
           >
             <CloseIcon />
           </IconButton>

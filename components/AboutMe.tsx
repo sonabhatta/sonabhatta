@@ -1,14 +1,7 @@
 import { Box, Typography, Chip, Button, Grid } from "@mui/material";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import { useRouter } from "next/navigation";
 
 export default function AboutMe() {
-  const router = useRouter();
-
-  const handleViewPortfolio = () => {
-    router.push("/");
-  };
-
   const skills = [
     "Networking",
     "Databases",
@@ -88,19 +81,6 @@ export default function AboutMe() {
           download
         >
           Download Resume
-        </Button>
-
-        <Button
-          variant="outlined"
-          sx={{
-            borderRadius: 999,
-            textTransform: "none",
-            px: 3,
-            py: 1,
-          }}
-          onClick={handleViewPortfolio}
-        >
-          View Portfolio
         </Button>
       </Box>
     </Box>
